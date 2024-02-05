@@ -17,7 +17,7 @@ app.listen(3000, ()=>{
  console.log('3000 server is running');
 })
 app.use('/',userRoute)
-app.use('/',authRoute)
+app.use('/api/auth',authRoute)
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
