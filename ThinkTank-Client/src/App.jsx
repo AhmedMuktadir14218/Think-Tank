@@ -8,7 +8,8 @@ import Projects from "./Pages/Projects";
 import PostPage from "./Pages/PostPage";
 import Dashboard from "./Pages/Dashboard";
 import Header from "./Component/Header";
-import Footer from "./Component/Footer";
+import FooterCom from "./Component/Footer";
+// import Footer from "./Component/Footer";
 
 export default function App() {
   return (
@@ -25,7 +26,7 @@ export default function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/post" element={<PostPage />} />
         </Routes>
-        <Footer></Footer>
+        <FooterCom/> 
       </BrowserRouter>
     </div>
   );
