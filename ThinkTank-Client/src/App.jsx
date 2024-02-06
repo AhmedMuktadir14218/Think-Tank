@@ -9,6 +9,7 @@ import PostPage from "./Pages/PostPage";
 import Dashboard from "./Pages/Dashboard";
 import Header from "./Component/Header";
 import FooterCom from "./Component/Footer";
+import PrivateRoute from "./Component/PrivateRoute";
 // import Footer from "./Component/Footer";
 
 export default function App() {
@@ -22,7 +23,9 @@ export default function App() {
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<Signup />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route element={<PrivateRoute />}>
+          <Route path='/dashboard' element={<Dashboard />} />
+          </Route>
           <Route path="/projects" element={<Projects />} />
           <Route path="/post" element={<PostPage />} />
         </Routes>
