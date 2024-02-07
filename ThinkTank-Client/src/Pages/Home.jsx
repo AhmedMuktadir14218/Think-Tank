@@ -1,7 +1,11 @@
+import CallToAction from "../Component/CallToAction";
+
  
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <CallToAction/>
+    </div>
   )
 }
