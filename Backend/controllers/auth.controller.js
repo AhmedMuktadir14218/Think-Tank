@@ -1,11 +1,10 @@
-import User from "../Model/user.model.js";
-import bcryptjs from "bcryptjs";
-import { errorHandler } from "../utils/error.js";
-import jwt from "jsonwebtoken";
+import User from '../models/user.model.js';
+import bcryptjs from 'bcryptjs';
+import { errorHandler } from '../utils/error.js';
+import jwt from 'jsonwebtoken';
 
-export const signup = async (req,res,next)=>{
-      const { username, email, password } = req.body;
-      
+export const signup = async (req, res, next) => {
+  const { username, email, password } = req.body;
 
   if (
     !username ||
@@ -15,27 +14,26 @@ export const signup = async (req,res,next)=>{
     email === '' ||
     password === ''
   ) {
-    next(errorHandler(400,"All field are required"));
+    next(errorHandler(400, 'All fields are required'));
   }
-  const hashPassword = bcryptjs.hashSync(password,10);
+
+  const hashedPassword = bcryptjs.hashSync(password, 10);
 
   const newUser = new User({
-    username:username,
-    email: email,
-    password: hashPassword,
+    username,
+    email,
+    password: hashedPassword,
   });
 
   try {
     await newUser.save();
     res.json('Signup successful');
-  } 
-  catch (error) {
-    // return res.status(500).json({message:error.message});
+  } catch (error) {
     next(error);
   }
 };
 
-export const signin = async (req,res,next)=>{
+export const signin = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password || email === '' || password === '') {
@@ -67,7 +65,8 @@ export const signin = async (req,res,next)=>{
   } catch (error) {
     next(error);
   }
-}
+};
+
 export const google = async (req, res, next) => {
   const { email, name, googlePhotoUrl } = req.body;
   try {
