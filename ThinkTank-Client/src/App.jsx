@@ -10,6 +10,9 @@ import Dashboard from "./Pages/Dashboard";
 import Header from "./Component/Header";
 import FooterCom from "./Component/Footer";
 import PrivateRoute from "./Component/PrivateRoute";
+import CreatePost from "./Pages/CreatePost";
+import OnlyAdminPrivateRoute from "./Component/OnlyAdminPrivateRoute"
+import UpdatePost from "./Pages/UpdatePost"
 // import Footer from "./Component/Footer";
 
 export default function App() {
@@ -26,10 +29,16 @@ export default function App() {
           <Route element={<PrivateRoute />}>
           <Route path='/dashboard' element={<Dashboard />} />
           </Route>
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/post" element={<PostPage />} />
-        </Routes>
-        <FooterCom/> 
+
+          <Route element={<OnlyAdminPrivateRoute />}>
+          <Route path='/create-post' element={<CreatePost />} />
+          <Route path='/update-post/:postId' element={<UpdatePost />} />
+        </Route>
+
+        <Route path='/projects' element={<Projects />} />
+        <Route path='/post/:postSlug' element={<PostPage />} />
+      </Routes>
+                  <FooterCom/> 
       </BrowserRouter>
     </div>
   );
